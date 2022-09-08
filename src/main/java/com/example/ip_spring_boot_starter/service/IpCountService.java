@@ -1,6 +1,7 @@
 package com.example.ip_spring_boot_starter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ public class IpCountService {
     private static final HashMap<String,Integer> map  = new HashMap<>();
 
 
+
     public void count(){
 
         String ip = httpServletRequest.getRemoteAddr() ;
@@ -24,6 +26,11 @@ public class IpCountService {
         }
 
         System.out.println(map+"ip");
+    }
+
+    @Scheduled(cron = "0/5 * * * * ?")
+    public void print(){
+        System.out.println(map);
     }
 
 }
